@@ -1,5 +1,5 @@
 ---
-- hosts: SW_DISTRI26
+- hosts: SW_DISTRIBUCION26
   connection: local
   become: yes
   become_user: root
