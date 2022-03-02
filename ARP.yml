@@ -1,0 +1,43 @@
+---
+- hosts: localhost
+
+  tasks:
+   - name: Crear directorio {{hostvars.localhost.DT}}
+     file:
+      path: /var/lib/awx/projects/Playbooks/ARP_SW72
+      state: directory
+     run_once: true
+
+- hosts: all
+  connection: local
+  become: yes
+  become_user: root
+  vars:
+    cli:
+      username: ansiblepr
+      password: Generica2020
+      auth_pass: T3cn0l0g1472
+      authorize: yes
+      timeout: 30
+
+  tasks:
+
+  - name: Informacion ARP y MAC
+    ios_command:
+      provider : "{{ cli }}"
+      commands:
+          - sh ip arp | i Vlan81
+          - sh mac address-table vlan 81 | e CPU
+    register: a
+
+  - name: debug en pantalla
+    debug:
+      msg:
+         - "{{ a }}"
+         - "{{ a.stdout_lines }}"
+
+  - name: accion
+    copy:
+      content: "{{ a.stdout_lines }}"
+      dest: "/var/lib/awx/projects/Playbooks/ARP_SW72/{{ inventory_hostname }}.txt"
+    delegate_to: localhost
