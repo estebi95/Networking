@@ -15,23 +15,24 @@
       path: /etc/ansible/ARP_SWBQ
       state: directory
      run_once: true
+     delegate_to: localhost
 
-  - name: Informacion DHCP BINDING
-    ios_command:
-      provider : "{{ cli }}"
-      commands:
-          - sh ip dhcp binding
-            #          - sh mac address-table vlan 81 | e CPU
-          - sh clock
-    register: a
+   - name: Informacion DHCP BINDING
+     ios_command:
+       provider : "{{ cli }}"
+       commands:
+           - sh ip dhcp binding
+             #          - sh mac address-table vlan 81 | e CPU
+           - sh clock
+     register: a
 
-  - name: debug en pantalla
-    debug:
-      msg:
-         - "{{ a.stdout_lines }}"
+   - name: debug en pantalla
+     debug:
+       msg:
+          - "{{ a.stdout_lines }}"
 
-  - name: accion
-    copy:
-      content: "{{ a.stdout_lines }}"
-      dest: "/etc/ansible/ARP_SWBQ/{{ inventory_hostname }}.txt"
-    delegate_to: localhost
+   - name: accion
+     copy:
+       content: "{{ a.stdout_lines }}"
+       dest: "/etc/ansible/ARP_SWBQ/{{ inventory_hostname }}.txt"
+     delegate_to: localhost
