@@ -9,7 +9,7 @@
        port: 587
        username: "jeladino@millenium.com.co"
        password: "Bogota2021"
-       from: "correo.millenium.com.co"
+       from: "jeladino@millenium.com.co"
        to:
         - estebanladino@usantotomas.edu.co
        cc:
