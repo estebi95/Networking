@@ -1,5 +1,5 @@
 ---
-- hosts: SW_DISTRIBUCION26
+- hosts: all
   connection: local
   vars:
     cli:
