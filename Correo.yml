@@ -7,9 +7,10 @@
      mail:
        host: "smtp.office365.com"
        port: 587
-       username: "jeladino@millenium.com.co"
-       password: "Bogota2021"
-       from: "jeladino@millenium.com.co"
+       host: "correo.millenium.com.co"
+       username: "nagios72@millenium.com.co"
+       password: "T3cn0l0g1472"
+       from: "correo.millenium.com.co"
        to:
         - estebanladino@usantotomas.edu.co
        cc:
