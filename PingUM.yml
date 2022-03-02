@@ -2,6 +2,7 @@
   - name: NAGIOS
     hosts: NAGIOS
     become: yes
+    become_user: root
     tasks:
 
     - name: Prueba de Ping 172.17.86.1
