@@ -11,9 +11,9 @@
        password: "Bogota2021"
        from: "jeladino@millenium.com.co"
        to:
-        - estebanladino@usantotomas.edu.co
+        - helpdeskETB@etb.com.co
        cc:
-        - jeladino@millenium.com.co
+        - networking@millenium.com.co
        subject: Millenum BPO | Limpieza tabla ARP-CRCs | CAV30CI1065030 / CAV30CI1065028
        body: |
         Buen día, Ingenieros ETB
