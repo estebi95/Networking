@@ -8,7 +8,7 @@
       state: directory
      run_once: true
 
-- hosts: all
+- hosts: SW_DIS72
   connection: local
   become: yes
   become_user: root
