@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+
+  tasks:
+
+   - name: Mail sending using Mail Module
+     mail:
+       host: "smtp.office365.com"
+       port: 587
+       username: "jeladino@millenium.com.co"
+       password: "Bogota2021"
+       from: "jeladino@millenium.com.co"
+       to:
+        - estebanladino@usantotomas.edu.co
+       cc:
+        - jeladino@millenium.com.co
+       subject: Millenum BPO | Limpieza tabla ARP-CRCs | CAV30CI1065030 / CAV30CI1065028
+       body: |
+        Cordial saludo,
+        Por favor su amable colaboracion con la limpieza de tabla ARP
+        Cordialmente,
+        Juan Esteban Ladino Antolinez
+        Ingeniero de Networking
+       secure: starttls 
