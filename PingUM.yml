@@ -1,0 +1,200 @@
+---
+  - name: NAGIOS
+    hosts: NAGIOS
+    become: yes
+    tasks:
+
+    - name: Prueba de Ping 172.17.86.1
+      shell: |
+              ping -c 4 172.17.86.15 | grep 'packet\|rtt'
+      register: a1
+
+    - name: debug
+      debug:
+        msg: "{{ a1.stdout_lines[0] }}"
+
+    - name: Set Fact para comando CERO
+      set_fact:
+        b: "{{ ( a1.stdout_lines[0]| regex_replace(' ', '*')).split('*')[5]}}"
+      ignore_errors: yes
+
+    - name: debug para comando CERO
+      debug:
+        msg: "{{ b }}"
+
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| PRUEBAS DE CONECTIVIDAD CODENSA  |||||
+             * CANAL PRINCIPAL CLARO
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             PE -> 172.17.86.15
+             {{ a1.stdout_lines}}
+             GERENTE DE CUENTA:: BETSY LLANOS - (3106280978)
+             CODIGO DE SERVICIO:: MPC0137
+             CONTACTO PROVEEDOR CLARO:: (7488999 - 3202972767)
+             ESTATUS:: "!!!!!!! POR FAVOR VALIDAR CANAL !!!!!!!!!"
+
+             __________________________________________________________
+      when: b == "100%"
+
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             *|||| RESULTADO DE PRUEBAS DE CONECTIVIDAD *||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 172.17.86.1
+             {{ a1.stdout_lines}}
+             CANAL SE ENCUENTRA ARRIBA
+             __________________________________________________________
+      when: b != "100%"
+
+    - name: Prueba de Ping 10.163.240.10
+      shell: |
+              ping -c 4 10.163.240.10 | grep 'packet\|rtt'
+      register: a2
+
+    - name: debug
+      debug:
+        msg: "{{ a2.stdout_lines[0] }}"
+
+    - name: Set Fact para comando UNO
+      set_fact:
+        b1: "{{ ( a2.stdout_lines[0]| regex_replace(' ', '*')).split('*')[5]}}"
+      ignore_errors: yes
+
+    - name: debug para comando UNO
+      debug:
+        msg: "{{ b1 }}"
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| RESULTADO DE PRUEBAS DE CONECTIVIDAD  |||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 10.163.240.10
+             {{ a2.stdout_lines}}
+             URGENTE!! --> POR FAVOR VALIDAR CANAL
+             __________________________________________________________
+      when: b1 == "100%"
+
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| RESULTADO DE PRUEBAS DE CONECTIVIDAD  |||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 10.163.240.10
+             {{ a2.stdout_lines}}
+             CANAL SE ENCUENTRA ARRIBA
+             __________________________________________________________
+      when: b1 != "100%"
+
+
+    - name: Prueba de Ping 10.246.220.173
+      shell: |
+              ping -c 4 10.246.220.173 | grep 'packet\|rtt'
+      register: a3
+
+    - name: debug
+      debug:
+        msg: "{{ a3.stdout_lines[0] }}"
+
+    - name: Set Fact para comando TRES
+      set_fact:
+        b2: "{{ ( a3.stdout_lines[0]| regex_replace(' ', '*')).split('*')[5]}}"
+      ignore_errors: yes
+
+    - name: debug para comando TRES
+      debug:
+        msg: "{{ b2 }}"
+
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| RESULTADO DE PRUEBAS DE CONECTIVIDAD  |||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 10.246.220.173
+             {{ a3.stdout_lines}}
+             URGENTE!! --> POR FAVOR VALIDAR CANAL
+             __________________________________________________________
+      when: b2 == "100%"
+
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| RESULTADO DE PRUEBAS DE CONECTIVIDAD  |||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 10.246.220.173
+             {{ a3.stdout_lines}}
+             CANAL SE ENCUENTRA ARRIBA
+             __________________________________________________________
+      when: b2 != "100%"
+
+    - name: Prueba de Ping 10.246.220.2
+      shell: |
+              ping -c 4 10.246.220.2 | grep 'packet\|rtt'
+      register: a4
+
+    - name: debug
+      debug:
+        msg: "{{ a4.stdout_lines[0] }}"
+
+    - name: Set Fact para comando CERO
+      set_fact:
+        b3: "{{ ( a4.stdout_lines[0]| regex_replace(' ', '*')).split('*')[5]}}"
+      ignore_errors: yes
+
+    - name: debug para comando CERO
+      debug:
+        msg: "{{ b3 }}"
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| RESULTADO DE PRUEBAS DE CONECTIVIDAD  |||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 10.246.220.2
+             {{ a4.stdout_lines}}
+             URGENTE!! --> POR FAVOR VALIDAR CANAL
+             __________________________________________________________
+      when: b3 == "100%"
+
+
+    - name: Telegram
+      telegram:
+         token: '5206686670:AAGFed4b_U8FljBgzlKJzTtLeJ1qYRU3aTs'
+         chat_id: -719761267
+         msg: |
+             |||| RESULTADO DE PRUEBAS DE CONECTIVIDAD  |||||
+             * PRUEBA DE CONECTIVIDAD CANALES CODENSA - CANAL CLARO MPC0137
+             CPE(COD)<-- MPLS(X)<-- CPE CLARO(MILL)
+             Prueba de conectividad hacia PE 10.246.220.2
+             {{ a4.stdout_lines}}
+             CANAL SE ENCUENTRA ARRIBA
+             __________________________________________________________
+      when: b3 != "100%"
