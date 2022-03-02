@@ -17,22 +17,22 @@
      run_once: true
      delegate_to: localhost
 
-  - name: Informacion ARP y MAC
-    ios_command:
-      provider : "{{ cli }}"
-      commands:
-          - sh ip arp | i Vlan81
-          - sh mac address-table vlan 81 | e CPU
-    register: a
+   - name: Informacion ARP y MAC
+     ios_command:
+       provider : "{{ cli }}"
+       commands:
+           - sh ip arp | i Vlan81
+           - sh mac address-table vlan 81 | e CPU
+     register: a
 
-  - name: debug en pantalla
-    debug:
-      msg:
-         - "{{ a }}"
-         - "{{ a.stdout_lines }}"
+   - name: debug en pantalla
+     debug:
+       msg:
+          - "{{ a }}"
+          - "{{ a.stdout_lines }}"
 
-  - name: accion
-    copy:
-      content: "{{ a.stdout_lines }}"
-      dest: "/var/lib/awx/projects/Playbooks/ARP_SW72/{{ inventory_hostname }}.txt"
-    delegate_to: localhost
+   - name: accion
+     copy:
+       content: "{{ a.stdout_lines }}"
+       dest: "/var/lib/awx/projects/Playbooks/ARP_SW72/{{ inventory_hostname }}.txt"
+     delegate_to: localhost
