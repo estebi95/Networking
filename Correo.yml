@@ -7,7 +7,6 @@
      mail:
        host: "smtp.office365.com"
        port: 587
-       host: "correo.millenium.com.co"
        username: "nagios72@millenium.com.co"
        password: "T3cn0l0g1472"
        from: "correo.millenium.com.co"
