@@ -18,6 +18,7 @@
            - sh clock
      register: a
 
+
    - name: debug en pantalla
      debug:
        msg:
