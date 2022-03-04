@@ -16,6 +16,7 @@
            - sh ip dhcp binding
              #          - sh mac address-table vlan 81 | e CPU
            - sh clock
+           - sh vlan brief
      register: a
 
    - name: debug en pantalla
