@@ -1,13 +1,6 @@
 ---
 - hosts: all
   connection: local
-  vars:
-    cli:
-      username: ansiblepr
-      password: Generica2020
-      auth_pass: T3cn0l0g1472
-      authorize: yes
-      timeout: 30
       
   tasks:
    - name: Crear directorio {{hostvars.localhost.DT}}
@@ -19,7 +12,6 @@
 
    - name: Informacion ARP y MAC
      ios_command:
-       provider : "{{ cli }}"
        commands:
            - sh ip arp | i Vlan81
            - sh mac address-table vlan 81 | e CPU
