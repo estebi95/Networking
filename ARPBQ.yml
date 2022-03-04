@@ -1,13 +1,6 @@
 ---
 - hosts: all
   connection: local
-  vars:
-    cli:
-       username: ansiblepr
-       password: Generica2020
-       auth_pass: m1ll3c4ll
-       authorize: yes
-       timeout: 30
        
   tasks:
    - name: Crear directorio {{hostvars.localhost.DT}}
@@ -19,7 +12,6 @@
 
    - name: Informacion DHCP BINDING
      ios_command:
-       provider : "{{ cli }}"
        commands:
            - sh ip dhcp binding
              #          - sh mac address-table vlan 81 | e CPU
